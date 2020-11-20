@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     Map<int, Color> color = {
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
     };
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Flutter CRM',
       theme: ThemeData(
         primarySwatch: MaterialColor(0xFFf1828d, color),
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -41,75 +43,91 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.grey[50],
+        color: Colors.grey[100],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Flexible(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xFFf1828d),
-                          border: Border.all(
-                            color: Color(0xFFf1828d),
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                        ),
-                        width: 200,
-                        child: ListView(
-                          children: <Widget>[
-                            userAvatarandDetails(),
-                            Center(
-                              child: Text(
-                                "Dashboard",
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white54),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Center(
-                              child: Text(
-                                "Reviews",
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white54),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Center(
-                              child: Text(
-                                "Customers",
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white54),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    content(),
-                  ],
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  drawer(),
+                  content(),
+                ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget drawer() {
+    return Flexible(
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color(0xFFf1828d),
+            border: Border.all(
+              color: Color(0xFFf1828d),
+            ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+          width: 200,
+          child: ListView(
+            children: <Widget>[
+              userAvatarandDetails(),
+              Center(
+                child: Text(
+                  "Dashboard",
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white54),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Text(
+                  "Reviews",
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white54),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Text(
+                  "Customers",
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white54),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget content() {
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20, 20, 0, 20),
+        child: ListView(children: [
+          dashboardFilter(),
+          Center(child: Text('Content')),
+        ]),
       ),
     );
   }
@@ -136,22 +154,67 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget content() {
-    return Expanded(
-      child: ListView(children: [
-        dashboardFilter(),
-        Center(child: Text('Content')),
-      ]),
-    );
-  }
-
   Widget dashboardFilter() {
     return Container(
-      height: 40,
       child: Row(
-        children: [ListTile(
-          dense: true,
-        )],
+        children: [
+          Flexible(
+            child: Container(
+              width: 170,
+              child: FlatButton(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(9.0),
+                  ),
+                  elevation: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(Icons.calendar_today),
+                      Text('Month'),
+                      Icon(Icons.arrow_drop_down)
+                    ],
+                  ),
+                ),
+                onPressed: () {},
+              ),
+            ),
+          ),
+          Card(
+            elevation: 0,
+            child: FlatButton(
+              child: Icon(Icons.filter_alt),
+              onPressed: () {},
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(9.0),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 150),
+          ),
+          Card(
+            elevation: 0,
+            child: FlatButton(
+              child: Icon(Icons.notifications),
+              onPressed: () {},
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(9.0),
+            ),
+          ),
+
+           Card(
+            elevation: 0,
+            child: FlatButton(
+              child: Icon(Icons.flag),
+              onPressed: () {},
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(9.0),
+            ),
+          ),
+        ],
       ),
     );
   }

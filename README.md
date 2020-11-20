@@ -1,6 +1,6 @@
 # auto_web
 
-A new Flutter project.
+A Web CRM App made with Flutter
 
 ## Getting Started
 

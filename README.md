@@ -2,6 +2,11 @@
 
 A Web CRM App made with Flutter
 
+To run the project :-
+1.Clone the project 
+2.flutter run -d chrome
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
